@@ -1,0 +1,55 @@
+.smg-wrap .nav-tab-wrapper {
+	margin-bottom: 20px;
+}
+
+.smg-logo-preview {
+	margin-bottom: 10px;
+}
+
+.smg-logo-preview img {
+	max-width: 200px;
+	max-height: 90px;
+	height: auto;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	padding: 4px;
+	background: #ffffff;
+}
+
+.smg-bypass-url-wrap {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	margin-top: 10px;
+	max-width: 640px;
+}
+
+.smg-token-regenerate-box {
+	margin-top: 24px;
+	padding: 16px 20px;
+	background: #ffffff;
+	border: 1px solid #c3c4c7;
+	border-left: 4px solid #2271b1;
+	max-width: 680px;
+}
+
+.smg-token-regenerate-box h2 {
+	margin-top: 0;
+	font-size: 1.1em;
+}
+
+.smg-extensions-panel {
+	background: #ffffff;
+	border: 1px solid #c3c4c7;
+	padding: 20px 24px;
+	max-width: 780px;
+}
+
+.smg-hooks-list {
+	list-style: disc;
+	margin-left: 20px;
+}
+
+.smg-hooks-list li {
+	margin-bottom: 8px;
+}

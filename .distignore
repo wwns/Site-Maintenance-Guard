@@ -1,0 +1,13 @@
+.git
+.github
+.gitignore
+.distignore
+README.md
+tests
+dist
+composer.json
+composer.lock
+package.json
+package-lock.json
+node_modules
+vendor
