@@ -66,27 +66,12 @@ final class SMG_Plugin {
 		$this->settings = new SMG_Settings();
 		$this->frontend = new SMG_Frontend();
 
-		add_action( 'init', array( $this, 'load_textdomain' ) );
 		add_filter(
 			'plugin_action_links_' . plugin_basename( SMG_PLUGIN_FILE ),
 			array( $this, 'add_action_links' )
 		);
 		add_action( 'admin_bar_menu', array( $this, 'add_admin_bar_indicator' ), 100 );
 		add_action( 'admin_post_smg_quick_toggle', array( $this, 'handle_quick_toggle' ) );
-	}
-
-	/**
-	 * Load plugin textdomain for bundled translations.
-	 *
-	 * @since 1.0.0
-	 * @return void
-	 */
-	public function load_textdomain() {
-		load_plugin_textdomain(
-			'site-maintenance-guard',
-			false,
-			dirname( plugin_basename( SMG_PLUGIN_FILE ) ) . '/languages'
-		);
 	}
 
 	/**
