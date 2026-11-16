@@ -210,3 +210,84 @@ msgstr "Rejestruje dodatkowe zakładki ustawień dla modułowych rozszerzeń."
 msgid "Action fired right before the maintenance template is rendered."
 msgstr "Akcja wywoływana tuż przed wyrenderowaniem szablonu prac technicznych."
 
+
+msgid "None (Logo & Typography Only)"
+msgstr "Brak (tylko logo i typografia)"
+
+msgid "Minimal card focused on typography and your custom logo."
+msgstr "Minimalistyczna karta skupiona na typografii i Twoim własnym logo."
+
+msgid "Teaser Macro (New Interface)"
+msgstr "Teaser makro (nowy interfejs)"
+
+msgid "High-contrast glassmorphic UI edge teaser that builds curiosity."
+msgstr "Wysokokontrastowe zbliżenie na nowy interfejs budujące ciekawość."
+
+msgid "Authentic Backstage (IT Desk)"
+msgstr "Autentyczne backstage (biurko IT)"
+
+msgid "Calm developer workspace with coffee and code editor."
+msgstr "Spokojne ujęcie stanowiska pracy z kawą i edytorem kodu."
+
+msgid "Retro UI (Sleep Mode Cat)"
+msgstr "Retro UI (kot w trybie uśpienia)"
+
+msgid "Lighthearted retro OS window with a cat sleeping on a keyboard."
+msgstr "Autoironiczne okno retro OS z kotem śpiącym na klawiaturze."
+
+msgid "Status Badge"
+msgstr "Odznaka statusu"
+
+msgid "e.g. Scheduled Update"
+msgstr "np. Planowana aktualizacja"
+
+msgid "Optional short status pill with a subtle pulsing dot displayed above the headline."
+msgstr "Opcjonalna krótka etykieta statusu z pulsującą kropką wyświetlana nad nagłówkiem."
+
+msgid "Expected Return Time"
+msgstr "Planowany czas powrotu"
+
+msgid "e.g. Today at 14:30 CET"
+msgstr "np. Dziś o 14:30"
+
+msgid "Give visitors a specific return time instead of a vague \"soon\" message."
+msgstr "Podaj odwiedzającym konkretną godzinę powrotu zamiast ogólnikowego wkrótce."
+
+msgid "Emergency Contact"
+msgstr "Kontakt awaryjny"
+
+msgid "e.g. support@example.com or https://status.example.com"
+msgstr "np. kontakt@twojadomena.pl lub https://status.twojadomena.pl"
+
+msgid "Optional email address, URL, or social handle for urgent inquiries during maintenance."
+msgstr "Opcjonalny adres e-mail, link lub profil w mediach społecznościowych do pilnych spraw."
+
+msgid "Visual Theme Artwork"
+msgstr "Gotowa grafika przewodnia"
+
+msgid "Aa"
+msgstr "Aa"
+
+msgid "Optional lightweight 1:1 artwork bundled locally inside the plugin (under 75 KB, zero external CDN requests)."
+msgstr "Opcjonalna lekka grafika 1:1 dołączona lokalnie we wtyczce (poniżej 75 KB, zero zewnętrznych zapytań CDN)."
+
+msgid "Color Scheme & Dark Mode"
+msgstr "Motyw kolorystyczny i Dark Mode"
+
+msgid "Light (Use custom colors below)"
+msgstr "Jasny (użyj własnych kolorów poniżej)"
+
+msgid "Dark Mode (Deep slate palette)"
+msgstr "Ciemny (ciemna grafitowa paleta)"
+
+msgid "Auto (Follow visitor Dark Mode preference)"
+msgstr "Auto (dopasuj do trybu ciemnego użytkownika)"
+
+msgid "Automatically adapts background, card surface, and text contrast when a visitor uses Dark Mode."
+msgstr "Automatycznie dostosowuje tło, kartę i kontrast tekstu, gdy odwiedzający korzysta z trybu ciemnego."
+
+msgid "Expected return:"
+msgstr "Planowany powrót:"
+
+msgid "Contact:"
+msgstr "Kontakt:"

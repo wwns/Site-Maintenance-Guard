@@ -4,7 +4,7 @@ Tags: maintenance mode, coming soon, under construction, 503, retry-after
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,9 @@ Lightweight, standards-compliant Maintenance Mode (HTTP 503 + Retry-After) and C
 * **Secret Bypass Link:** Share a secure, constant-time verified bypass URL with clients or stakeholders (stored via `HttpOnly; SameSite=Lax` hashed cookie)—regenerate it anytime with one click.
 * **Multi-Language & WPML / Polylang Ready:** Full i18n support with `.pot` template, bundled Polish (`pl_PL`) translation, and `wpml-config.xml` for translating custom maintenance messages.
 * **Excluded Paths & REST API Control:** Keep specific relative paths (such as `/privacy-policy`) accessible and control public `/wp-json/` REST API access.
+* **3 Built-In Non-Cliché Visual Presets:** Choose from bundled lightweight (`< 75 KB`, 1:1) artwork presets—*Teaser Macro*, *Authentic Backstage (IT Desk)*, or *Retro UI Sleep Mode Cat*—designed without cliché cones or gears.
+* **Dark Mode & Auto OS Theme:** Choose Light, Dark, or Auto (`prefers-color-scheme: dark`) so the maintenance screen and artwork maintain crisp contrast on every visitor device.
+* **Structured Maintenance UX:** Display an optional pulsing **Status Badge**, concrete **Expected Return Time**, and clickable **Emergency Contact** (email `mailto:` or link) alongside your message.
 * **Clean Customization & Zero External CDNs:** Customize the browser title, headline, rich message, logo (via WordPress Media Library), colors, and custom CSS—all assets load locally with zero telemetry.
 * **Developer & Freemium Friendly:** Clean filter and action hooks (`smg_can_bypass`, `smg_template_vars`, `smg_settings_tabs`, `smg_before_render_template`).
 
@@ -54,6 +57,13 @@ No. All assets are bundled locally within the plugin. There are no external CDN 
 
 == Changelog ==
 
+= 1.1.0 =
+* Added 3 built-in lightweight (`< 75 KB`, 1:1) visual artwork presets in the Design tab: *Teaser Macro*, *Authentic Backstage (IT Desk)*, and *Retro UI (Sleep Mode Cat)*.
+* Added Color Scheme & Dark Mode support (`Light`, `Dark`, and `Auto` via `prefers-color-scheme: dark`).
+* Added structured maintenance UX fields in the General tab: optional pulsing Status Badge, Expected Return Time, and Emergency Contact (auto-linked for email/URL).
+* Added WPML / Polylang `wpml-config.xml` entries for the new text fields and updated Polish (`pl_PL`) translations.
+* Fixed `wp_die()` HTTP 403 status argument in admin permission checks.
+
 = 1.0.0 =
 * Initial release.
 * Added Maintenance Mode (HTTP 503 + Retry-After) and Coming Soon Mode (HTTP 200).
@@ -62,5 +72,5 @@ No. All assets are bundled locally within the plugin. There are no external CDN 
 
 == Upgrade Notice ==
 
-= 1.0.0 =
-Initial release of Site Maintenance Guard.
+= 1.1.0 =
+Adds 3 built-in non-cliché visual presets, Dark Mode / Auto theme support, pulsing status badge, expected return time, and emergency contact fields.

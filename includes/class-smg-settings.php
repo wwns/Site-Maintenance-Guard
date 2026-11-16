@@ -40,6 +40,37 @@ class SMG_Settings {
 	}
 
 	/**
+	 * Return available built-in maintenance visual presets.
+	 *
+	 * @since 1.1.0
+	 * @return array<string, array<string, string>>
+	 */
+	public static function get_visual_presets() {
+		return array(
+			'none'           => array(
+				'label'       => __( 'None (Logo & Typography Only)', 'site-maintenance-guard' ),
+				'description' => __( 'Minimal card focused on typography and your custom logo.', 'site-maintenance-guard' ),
+				'file'        => '',
+			),
+			'teaser_macro'   => array(
+				'label'       => __( 'Teaser Macro (New Interface)', 'site-maintenance-guard' ),
+				'description' => __( 'High-contrast glassmorphic UI edge teaser that builds curiosity.', 'site-maintenance-guard' ),
+				'file'        => '01-teaser-macro.jpg',
+			),
+			'backstage_desk' => array(
+				'label'       => __( 'Authentic Backstage (IT Desk)', 'site-maintenance-guard' ),
+				'description' => __( 'Calm developer workspace with coffee and code editor.', 'site-maintenance-guard' ),
+				'file'        => '02-backstage-desk.jpg',
+			),
+			'retro_ui_cat'   => array(
+				'label'       => __( 'Retro UI (Sleep Mode Cat)', 'site-maintenance-guard' ),
+				'description' => __( 'Lighthearted retro OS window with a cat sleeping on a keyboard.', 'site-maintenance-guard' ),
+				'file'        => '03-retro-ui-cat.jpg',
+			),
+		);
+	}
+
+	/**
 	 * Return default plugin settings.
 	 *
 	 * @since 1.0.0
@@ -51,9 +82,14 @@ class SMG_Settings {
 			'mode'                => 'maintenance',
 			'retry_after'         => 3600,
 			'noindex_coming_soon' => true,
+			'status_badge'        => '',
 			'page_title'          => __( 'Site Under Maintenance', 'site-maintenance-guard' ),
 			'heading'             => __( 'We will be back shortly', 'site-maintenance-guard' ),
 			'message'             => __( 'Our website is currently undergoing scheduled maintenance. Thank you for your patience.', 'site-maintenance-guard' ),
+			'return_time'         => '',
+			'contact_info'        => '',
+			'visual_preset'       => 'none',
+			'color_scheme'        => 'light',
 			'logo_id'             => 0,
 			'bg_color'            => '#f4f6f8',
 			'card_bg_color'       => '#ffffff',
@@ -195,6 +231,10 @@ class SMG_Settings {
 		$retry_after           = isset( $input['retry_after'] ) ? absint( $input['retry_after'] ) : 3600;
 		$output['retry_after'] = max( 60, min( 604800, $retry_after ) );
 
+		$output['status_badge'] = isset( $input['status_badge'] )
+			? sanitize_text_field( $input['status_badge'] )
+			: $defaults['status_badge'];
+
 		$output['page_title'] = isset( $input['page_title'] )
 			? sanitize_text_field( $input['page_title'] )
 			: $defaults['page_title'];
@@ -206,6 +246,22 @@ class SMG_Settings {
 		$output['message'] = isset( $input['message'] )
 			? wp_kses_post( $input['message'] )
 			: $defaults['message'];
+
+		$output['return_time'] = isset( $input['return_time'] )
+			? sanitize_text_field( $input['return_time'] )
+			: $defaults['return_time'];
+
+		$output['contact_info'] = isset( $input['contact_info'] )
+			? sanitize_text_field( $input['contact_info'] )
+			: $defaults['contact_info'];
+
+		$allowed_presets         = array_keys( self::get_visual_presets() );
+		$submitted_preset        = isset( $input['visual_preset'] ) ? sanitize_key( $input['visual_preset'] ) : 'none';
+		$output['visual_preset'] = in_array( $submitted_preset, $allowed_presets, true ) ? $submitted_preset : 'none';
+
+		$allowed_schemes        = array( 'light', 'dark', 'auto' );
+		$submitted_scheme       = isset( $input['color_scheme'] ) ? sanitize_key( $input['color_scheme'] ) : 'light';
+		$output['color_scheme'] = in_array( $submitted_scheme, $allowed_schemes, true ) ? $submitted_scheme : 'light';
 
 		$output['logo_id'] = isset( $input['logo_id'] ) ? absint( $input['logo_id'] ) : 0;
 
@@ -276,7 +332,7 @@ class SMG_Settings {
 	 */
 	public function handle_regenerate_token() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to perform this action.', 'site-maintenance-guard' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to perform this action.', 'site-maintenance-guard' ), '', array( 'response' => 403 ) );
 		}
 
 		check_admin_referer( 'smg_regenerate_token_action', 'smg_regenerate_nonce' );
@@ -437,12 +493,17 @@ class SMG_Settings {
 			}
 			echo '<input type="hidden" name="' . esc_attr( SMG_OPTION_NAME ) . '[mode]" value="' . esc_attr( $settings['mode'] ) . '" />';
 			echo '<input type="hidden" name="' . esc_attr( SMG_OPTION_NAME ) . '[retry_after]" value="' . esc_attr( (string) $settings['retry_after'] ) . '" />';
+			echo '<input type="hidden" name="' . esc_attr( SMG_OPTION_NAME ) . '[status_badge]" value="' . esc_attr( $settings['status_badge'] ) . '" />';
 			echo '<input type="hidden" name="' . esc_attr( SMG_OPTION_NAME ) . '[page_title]" value="' . esc_attr( $settings['page_title'] ) . '" />';
 			echo '<input type="hidden" name="' . esc_attr( SMG_OPTION_NAME ) . '[heading]" value="' . esc_attr( $settings['heading'] ) . '" />';
 			echo '<input type="hidden" name="' . esc_attr( SMG_OPTION_NAME ) . '[message]" value="' . esc_attr( $settings['message'] ) . '" />';
+			echo '<input type="hidden" name="' . esc_attr( SMG_OPTION_NAME ) . '[return_time]" value="' . esc_attr( $settings['return_time'] ) . '" />';
+			echo '<input type="hidden" name="' . esc_attr( SMG_OPTION_NAME ) . '[contact_info]" value="' . esc_attr( $settings['contact_info'] ) . '" />';
 		}
 
 		if ( 'design' !== $active_tab ) {
+			echo '<input type="hidden" name="' . esc_attr( SMG_OPTION_NAME ) . '[visual_preset]" value="' . esc_attr( $settings['visual_preset'] ) . '" />';
+			echo '<input type="hidden" name="' . esc_attr( SMG_OPTION_NAME ) . '[color_scheme]" value="' . esc_attr( $settings['color_scheme'] ) . '" />';
 			echo '<input type="hidden" name="' . esc_attr( SMG_OPTION_NAME ) . '[logo_id]" value="' . esc_attr( (string) $settings['logo_id'] ) . '" />';
 			echo '<input type="hidden" name="' . esc_attr( SMG_OPTION_NAME ) . '[bg_color]" value="' . esc_attr( $settings['bg_color'] ) . '" />';
 			echo '<input type="hidden" name="' . esc_attr( SMG_OPTION_NAME ) . '[card_bg_color]" value="' . esc_attr( $settings['card_bg_color'] ) . '" />';
@@ -519,6 +580,15 @@ class SMG_Settings {
 				</td>
 			</tr>
 			<tr>
+				<th scope="row"><label for="smg_status_badge"><?php esc_html_e( 'Status Badge', 'site-maintenance-guard' ); ?></label></th>
+				<td>
+					<input type="text" id="smg_status_badge" name="<?php echo esc_attr( SMG_OPTION_NAME ); ?>[status_badge]" value="<?php echo esc_attr( $settings['status_badge'] ); ?>" class="regular-text" placeholder="<?php esc_attr_e( 'e.g. Scheduled Update', 'site-maintenance-guard' ); ?>" />
+					<p class="description">
+						<?php esc_html_e( 'Optional short status pill with a subtle pulsing dot displayed above the headline.', 'site-maintenance-guard' ); ?>
+					</p>
+				</td>
+			</tr>
+			<tr>
 				<th scope="row"><label for="smg_page_title"><?php esc_html_e( 'Browser Page Title', 'site-maintenance-guard' ); ?></label></th>
 				<td>
 					<input type="text" id="smg_page_title" name="<?php echo esc_attr( SMG_OPTION_NAME ); ?>[page_title]" value="<?php echo esc_attr( $settings['page_title'] ); ?>" class="regular-text" />
@@ -547,6 +617,24 @@ class SMG_Settings {
 					?>
 				</td>
 			</tr>
+			<tr>
+				<th scope="row"><label for="smg_return_time"><?php esc_html_e( 'Expected Return Time', 'site-maintenance-guard' ); ?></label></th>
+				<td>
+					<input type="text" id="smg_return_time" name="<?php echo esc_attr( SMG_OPTION_NAME ); ?>[return_time]" value="<?php echo esc_attr( $settings['return_time'] ); ?>" class="regular-text" placeholder="<?php esc_attr_e( 'e.g. Today at 14:30 CET', 'site-maintenance-guard' ); ?>" />
+					<p class="description">
+						<?php esc_html_e( 'Give visitors a specific return time instead of a vague "soon" message.', 'site-maintenance-guard' ); ?>
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><label for="smg_contact_info"><?php esc_html_e( 'Emergency Contact', 'site-maintenance-guard' ); ?></label></th>
+				<td>
+					<input type="text" id="smg_contact_info" name="<?php echo esc_attr( SMG_OPTION_NAME ); ?>[contact_info]" value="<?php echo esc_attr( $settings['contact_info'] ); ?>" class="regular-text" placeholder="<?php esc_attr_e( 'e.g. support@example.com or https://status.example.com', 'site-maintenance-guard' ); ?>" />
+					<p class="description">
+						<?php esc_html_e( 'Optional email address, URL, or social handle for urgent inquiries during maintenance.', 'site-maintenance-guard' ); ?>
+					</p>
+				</td>
+			</tr>
 		</table>
 		<?php
 	}
@@ -559,10 +647,62 @@ class SMG_Settings {
 	 * @return void
 	 */
 	private function render_design_tab( $settings ) {
-		$logo_id  = absint( $settings['logo_id'] );
-		$logo_url = $logo_id ? wp_get_attachment_image_url( $logo_id, 'medium' ) : '';
+		$logo_id        = absint( $settings['logo_id'] );
+		$logo_url       = $logo_id ? wp_get_attachment_image_url( $logo_id, 'medium' ) : '';
+		$presets        = self::get_visual_presets();
+		$active_preset  = isset( $settings['visual_preset'] ) ? (string) $settings['visual_preset'] : 'none';
+		$color_scheme   = isset( $settings['color_scheme'] ) ? (string) $settings['color_scheme'] : 'light';
 		?>
 		<table class="form-table" role="presentation">
+			<tr>
+				<th scope="row"><?php esc_html_e( 'Visual Theme Artwork', 'site-maintenance-guard' ); ?></th>
+				<td>
+					<fieldset class="smg-preset-grid">
+						<legend class="screen-reader-text"><?php esc_html_e( 'Visual Theme Artwork', 'site-maintenance-guard' ); ?></legend>
+						<?php foreach ( $presets as $preset_key => $preset ) : ?>
+							<label class="smg-preset-card">
+								<input type="radio"
+									name="<?php echo esc_attr( SMG_OPTION_NAME ); ?>[visual_preset]"
+									value="<?php echo esc_attr( $preset_key ); ?>"
+									<?php checked( $active_preset, $preset_key ); ?> />
+								<span class="smg-preset-inner">
+									<?php if ( ! empty( $preset['file'] ) ) : ?>
+										<img src="<?php echo esc_url( SMG_PLUGIN_URL . 'assets/images/' . $preset['file'] ); ?>" alt="<?php echo esc_attr( $preset['label'] ); ?>" class="smg-preset-thumb" />
+									<?php else : ?>
+										<span class="smg-preset-thumb smg-preset-thumb-empty"><?php esc_html_e( 'Aa', 'site-maintenance-guard' ); ?></span>
+									<?php endif; ?>
+									<span class="smg-preset-meta">
+										<strong><?php echo esc_html( $preset['label'] ); ?></strong>
+										<span><?php echo esc_html( $preset['description'] ); ?></span>
+									</span>
+								</span>
+							</label>
+						<?php endforeach; ?>
+					</fieldset>
+					<p class="description">
+						<?php esc_html_e( 'Optional lightweight 1:1 artwork bundled locally inside the plugin (under 75 KB, zero external CDN requests).', 'site-maintenance-guard' ); ?>
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><label for="smg_color_scheme"><?php esc_html_e( 'Color Scheme & Dark Mode', 'site-maintenance-guard' ); ?></label></th>
+				<td>
+					<select id="smg_color_scheme" name="<?php echo esc_attr( SMG_OPTION_NAME ); ?>[color_scheme]">
+						<option value="light" <?php selected( $color_scheme, 'light' ); ?>>
+							<?php esc_html_e( 'Light (Use custom colors below)', 'site-maintenance-guard' ); ?>
+						</option>
+						<option value="dark" <?php selected( $color_scheme, 'dark' ); ?>>
+							<?php esc_html_e( 'Dark Mode (Deep slate palette)', 'site-maintenance-guard' ); ?>
+						</option>
+						<option value="auto" <?php selected( $color_scheme, 'auto' ); ?>>
+							<?php esc_html_e( 'Auto (Follow visitor Dark Mode preference)', 'site-maintenance-guard' ); ?>
+						</option>
+					</select>
+					<p class="description">
+						<?php esc_html_e( 'Automatically adapts background, card surface, and text contrast when a visitor uses Dark Mode.', 'site-maintenance-guard' ); ?>
+					</p>
+				</td>
+			</tr>
 			<tr>
 				<th scope="row"><?php esc_html_e( 'Logo', 'site-maintenance-guard' ); ?></th>
 				<td>

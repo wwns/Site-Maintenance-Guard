@@ -158,7 +158,7 @@ final class SMG_Plugin {
 	 */
 	public function handle_quick_toggle() {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You do not have permission to perform this action.', 'site-maintenance-guard' ), 403 );
+			wp_die( esc_html__( 'You do not have permission to perform this action.', 'site-maintenance-guard' ), '', array( 'response' => 403 ) );
 		}
 
 		check_admin_referer( 'smg_quick_toggle', 'smg_toggle_nonce' );

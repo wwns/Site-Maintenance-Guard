@@ -1,9 +1,12 @@
 <wpml-config>
 	<admin-texts>
 		<key name="smg_settings">
+			<key name="status_badge" />
 			<key name="page_title" />
 			<key name="heading" />
 			<key name="message" />
+			<key name="return_time" />
+			<key name="contact_info" />
 		</key>
 	</admin-texts>
 </wpml-config>

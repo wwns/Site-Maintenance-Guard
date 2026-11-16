@@ -97,3 +97,82 @@
 .smg-hooks-list li {
 	margin-bottom: 8px;
 }
+
+.smg-preset-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: 12px;
+	max-width: 920px;
+	margin: 0 0 8px;
+	padding: 0;
+	border: 0;
+}
+
+.smg-preset-card {
+	position: relative;
+	display: block;
+	cursor: pointer;
+}
+
+.smg-preset-card input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.smg-preset-inner {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px;
+	background: #ffffff;
+	border: 2px solid #dcdcde;
+	border-radius: 6px;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.smg-preset-card input[type="radio"]:checked + .smg-preset-inner {
+	border-color: #2271b1;
+	box-shadow: 0 0 0 1px #2271b1;
+	background: #f0f6fc;
+}
+
+.smg-preset-card input[type="radio"]:focus-visible + .smg-preset-inner {
+	outline: 2px solid #2271b1;
+	outline-offset: 2px;
+}
+
+.smg-preset-thumb {
+	width: 64px;
+	height: 64px;
+	flex-shrink: 0;
+	border-radius: 6px;
+	object-fit: cover;
+	border: 1px solid #dcdcde;
+}
+
+.smg-preset-thumb-empty {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: #f6f7f7;
+	color: #50575e;
+	font-weight: 700;
+	font-size: 20px;
+}
+
+.smg-preset-meta {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	font-size: 12px;
+	line-height: 1.35;
+	color: #50575e;
+}
+
+.smg-preset-meta strong {
+	font-size: 13px;
+	color: #1d2327;
+}

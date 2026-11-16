@@ -287,21 +287,41 @@ class SMG_Frontend {
 			}
 		}
 
+		$hero_image_url = '';
+		$visual_preset  = isset( $settings['visual_preset'] ) ? (string) $settings['visual_preset'] : 'none';
+		$presets        = SMG_Settings::get_visual_presets();
+		if ( isset( $presets[ $visual_preset ] ) && ! empty( $presets[ $visual_preset ]['file'] ) ) {
+			$preset_file = $presets[ $visual_preset ]['file'];
+			if ( file_exists( SMG_PLUGIN_DIR . 'assets/images/' . $preset_file ) ) {
+				$hero_image_url = SMG_PLUGIN_URL . 'assets/images/' . $preset_file;
+			}
+		}
+
+		$color_scheme = isset( $settings['color_scheme'] ) && in_array( $settings['color_scheme'], array( 'light', 'dark', 'auto' ), true )
+			? $settings['color_scheme']
+			: 'light';
+
 		$template_vars = apply_filters(
 			'smg_template_vars',
 			array(
-				'mode'          => $settings['mode'],
-				'page_title'    => $settings['page_title'],
-				'heading'       => $settings['heading'],
-				'message'       => $settings['message'],
-				'logo_url'      => $logo_url,
-				'site_name'     => get_bloginfo( 'name' ),
-				'bg_color'      => $settings['bg_color'],
-				'card_bg_color' => $settings['card_bg_color'],
-				'text_color'    => $settings['text_color'],
-				'accent_color'  => $settings['accent_color'],
-				'custom_css'    => $settings['custom_css'],
-				'noindex'       => ( 'maintenance' === $settings['mode'] || ! empty( $settings['noindex_coming_soon'] ) ),
+				'mode'           => $settings['mode'],
+				'status_badge'   => $settings['status_badge'] ?? '',
+				'page_title'     => $settings['page_title'],
+				'heading'        => $settings['heading'],
+				'message'        => $settings['message'],
+				'return_time'    => $settings['return_time'] ?? '',
+				'contact_info'   => $settings['contact_info'] ?? '',
+				'visual_preset'  => $visual_preset,
+				'hero_image_url' => $hero_image_url,
+				'color_scheme'   => $color_scheme,
+				'logo_url'       => $logo_url,
+				'site_name'      => get_bloginfo( 'name' ),
+				'bg_color'       => $settings['bg_color'],
+				'card_bg_color'  => $settings['card_bg_color'],
+				'text_color'     => $settings['text_color'],
+				'accent_color'   => $settings['accent_color'],
+				'custom_css'     => $settings['custom_css'],
+				'noindex'        => ( 'maintenance' === $settings['mode'] || ! empty( $settings['noindex_coming_soon'] ) ),
 			)
 		);
 

@@ -208,3 +208,84 @@ msgstr ""
 msgid "Action fired right before the maintenance template is rendered."
 msgstr ""
 
+
+msgid "None (Logo & Typography Only)"
+msgstr ""
+
+msgid "Minimal card focused on typography and your custom logo."
+msgstr ""
+
+msgid "Teaser Macro (New Interface)"
+msgstr ""
+
+msgid "High-contrast glassmorphic UI edge teaser that builds curiosity."
+msgstr ""
+
+msgid "Authentic Backstage (IT Desk)"
+msgstr ""
+
+msgid "Calm developer workspace with coffee and code editor."
+msgstr ""
+
+msgid "Retro UI (Sleep Mode Cat)"
+msgstr ""
+
+msgid "Lighthearted retro OS window with a cat sleeping on a keyboard."
+msgstr ""
+
+msgid "Status Badge"
+msgstr ""
+
+msgid "e.g. Scheduled Update"
+msgstr ""
+
+msgid "Optional short status pill with a subtle pulsing dot displayed above the headline."
+msgstr ""
+
+msgid "Expected Return Time"
+msgstr ""
+
+msgid "e.g. Today at 14:30 CET"
+msgstr ""
+
+msgid "Give visitors a specific return time instead of a vague \"soon\" message."
+msgstr ""
+
+msgid "Emergency Contact"
+msgstr ""
+
+msgid "e.g. support@example.com or https://status.example.com"
+msgstr ""
+
+msgid "Optional email address, URL, or social handle for urgent inquiries during maintenance."
+msgstr ""
+
+msgid "Visual Theme Artwork"
+msgstr ""
+
+msgid "Aa"
+msgstr ""
+
+msgid "Optional lightweight 1:1 artwork bundled locally inside the plugin (under 75 KB, zero external CDN requests)."
+msgstr ""
+
+msgid "Color Scheme & Dark Mode"
+msgstr ""
+
+msgid "Light (Use custom colors below)"
+msgstr ""
+
+msgid "Dark Mode (Deep slate palette)"
+msgstr ""
+
+msgid "Auto (Follow visitor Dark Mode preference)"
+msgstr ""
+
+msgid "Automatically adapts background, card surface, and text contrast when a visitor uses Dark Mode."
+msgstr ""
+
+msgid "Expected return:"
+msgstr ""
+
+msgid "Contact:"
+msgstr ""

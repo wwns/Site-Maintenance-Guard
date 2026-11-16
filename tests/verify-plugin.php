@@ -47,7 +47,7 @@ foreach ( $php_files as $file ) {
 // 2. Validate readme.txt structure.
 $readme = file_get_contents( $root . '/readme.txt' );
 smg_assert( 0 === strpos( $readme, '=== Site Maintenance Guard ===' ), 'readme.txt starts with plugin title' );
-smg_assert( false !== strpos( $readme, 'Stable tag: 1.0.0' ), 'readme.txt has Stable tag' );
+smg_assert( false !== strpos( $readme, 'Stable tag: 1.1.0' ), 'readme.txt has Stable tag' );
 smg_assert( false !== strpos( $readme, 'License: GPLv2 or later' ), 'readme.txt has GPLv2 or later license' );
 smg_assert( false !== strpos( $readme, '== Description ==' ), 'readme.txt has Description section' );
 smg_assert( false !== strpos( $readme, '== Installation ==' ), 'readme.txt has Installation section' );
@@ -66,7 +66,7 @@ smg_assert( '' !== $short_desc && strlen( $short_desc ) <= 150, 'readme.txt shor
 // 3. Mock WordPress functions to test SMG_Settings and SMG_Frontend logic.
 define( 'ABSPATH', $root . '/' );
 define( 'SMG_OPTION_NAME', 'smg_settings' );
-define( 'SMG_VERSION', '1.0.0' );
+define( 'SMG_VERSION', '1.1.0' );
 define( 'SMG_PLUGIN_FILE', $root . '/site-maintenance-guard.php' );
 define( 'SMG_PLUGIN_DIR', $root . '/' );
 define( 'SMG_PLUGIN_URL', 'https://example.com/wp-content/plugins/site-maintenance-guard/' );
@@ -125,9 +125,14 @@ $sanitized = $settings_handler->sanitize_settings(
 		'enabled'        => '1',
 		'mode'           => 'invalid_mode',
 		'retry_after'    => '5',
+		'status_badge'   => '<b>Scheduled Update</b>',
 		'page_title'     => '<script>alert(1)</script>Maintenance',
 		'heading'        => '<b>Back Soon</b>',
 		'message'        => '<p>Hello</p><script>evil()</script>',
+		'return_time'    => 'Today at 14:30 CET',
+		'contact_info'   => 'support@example.com',
+		'visual_preset'  => 'teaser_macro',
+		'color_scheme'   => 'auto',
 		'bg_color'       => 'not-a-color',
 		'accent_color'   => '#123abc',
 		'custom_css'     => 'body { color: red; }</style><script>x()</script>',
@@ -139,9 +144,14 @@ $sanitized = $settings_handler->sanitize_settings(
 smg_assert( true === $sanitized['enabled'], 'Sanitize sets enabled boolean' );
 smg_assert( 'maintenance' === $sanitized['mode'], 'Sanitize falls back invalid mode to maintenance' );
 smg_assert( 60 === $sanitized['retry_after'], 'Sanitize clamps retry_after minimum to 60' );
+smg_assert( 'Scheduled Update' === $sanitized['status_badge'], 'Sanitize strips tags from status_badge' );
 smg_assert( 'alert(1)Maintenance' === $sanitized['page_title'], 'Sanitize strips tags from page_title' );
 smg_assert( 'Back Soon' === $sanitized['heading'], 'Sanitize strips tags from heading' );
 smg_assert( '<p>Hello</p>' === $sanitized['message'], 'Sanitize strips script tags from message' );
+smg_assert( 'Today at 14:30 CET' === $sanitized['return_time'], 'Sanitize preserves valid return_time' );
+smg_assert( 'support@example.com' === $sanitized['contact_info'], 'Sanitize preserves valid contact_info' );
+smg_assert( 'teaser_macro' === $sanitized['visual_preset'], 'Sanitize preserves valid visual_preset' );
+smg_assert( 'auto' === $sanitized['color_scheme'], 'Sanitize preserves valid color_scheme' );
 smg_assert( '#f4f6f8' === $sanitized['bg_color'], 'Sanitize falls back invalid hex color to default' );
 smg_assert( '#123abc' === $sanitized['accent_color'], 'Sanitize preserves valid hex color' );
 smg_assert( false === strpos( $sanitized['custom_css'], '<script>' ), 'Sanitize strips tags from custom_css' );
@@ -149,6 +159,23 @@ smg_assert( in_array( 'administrator', $sanitized['allowed_roles'], true ), 'San
 smg_assert( in_array( 'editor', $sanitized['allowed_roles'], true ), 'Sanitize keeps valid editor role' );
 smg_assert( ! in_array( 'nonexistent_role', $sanitized['allowed_roles'], true ), 'Sanitize drops invalid roles' );
 smg_assert( "/privacy-policy\n/contact/" === $sanitized['excluded_paths'], 'Sanitize normalizes excluded_paths' );
+
+$invalid_visual = $settings_handler->sanitize_settings(
+	array(
+		'visual_preset' => 'nonexistent_preset',
+		'color_scheme'  => 'neon_pink',
+	)
+);
+smg_assert( 'none' === $invalid_visual['visual_preset'], 'Sanitize falls back invalid visual_preset to none' );
+smg_assert( 'light' === $invalid_visual['color_scheme'], 'Sanitize falls back invalid color_scheme to light' );
+
+foreach ( SMG_Settings::get_visual_presets() as $preset_key => $preset ) {
+	if ( '' !== $preset['file'] ) {
+		$asset_path = $root . '/assets/images/' . $preset['file'];
+		smg_assert( file_exists( $asset_path ), "Visual preset asset exists: {$preset['file']}" );
+		smg_assert( filesize( $asset_path ) < 102400, "Visual preset asset < 100 KB: {$preset['file']}" );
+	}
+}
 
 $frontend = new SMG_Frontend();
 $test_settings = array_merge(
