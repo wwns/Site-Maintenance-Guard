@@ -144,6 +144,7 @@ class SMG_Frontend {
 		$expected_token = (string) $settings['bypass_token'];
 
 		if ( '' !== $provided_token && hash_equals( $expected_token, $provided_token ) ) {
+			$cookie_value   = function_exists( 'wp_hash' ) ? wp_hash( $expected_token ) : hash( 'sha256', $expected_token );
 			$cookie_options = array(
 				'expires'  => time() + DAY_IN_SECONDS,
 				'path'     => defined( 'COOKIEPATH' ) ? COOKIEPATH : '/',
@@ -152,7 +153,7 @@ class SMG_Frontend {
 				'httponly' => true,
 				'samesite' => 'Lax',
 			);
-			setcookie( self::BYPASS_COOKIE, $expected_token, $cookie_options );
+			setcookie( self::BYPASS_COOKIE, $cookie_value, $cookie_options );
 
 			wp_safe_redirect( remove_query_arg( 'smg_bypass' ) );
 			exit;
@@ -222,8 +223,9 @@ class SMG_Frontend {
 			return false;
 		}
 
-		$cookie_token = sanitize_text_field( wp_unslash( $_COOKIE[ self::BYPASS_COOKIE ] ) );
-		return '' !== $cookie_token && hash_equals( (string) $settings['bypass_token'], $cookie_token );
+		$cookie_token  = sanitize_text_field( wp_unslash( $_COOKIE[ self::BYPASS_COOKIE ] ) );
+		$expected_hash = function_exists( 'wp_hash' ) ? wp_hash( (string) $settings['bypass_token'] ) : hash( 'sha256', (string) $settings['bypass_token'] );
+		return '' !== $cookie_token && hash_equals( $expected_hash, $cookie_token );
 	}
 
 	/**

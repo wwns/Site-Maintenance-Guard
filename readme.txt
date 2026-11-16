@@ -2,7 +2,7 @@
 Contributors: wwns
 Tags: maintenance mode, coming soon, under construction, 503, retry-after
 Requires at least: 6.0
-Tested up to: 6.7
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 1.0.0
 License: GPLv2 or later
@@ -16,12 +16,14 @@ Lightweight, standards-compliant Maintenance Mode (HTTP 503 + Retry-After) and C
 
 = Key Features =
 
-* **True Maintenance Mode (HTTP 503 + Retry-After):** Informs search engines that your site is temporarily down so your rankings are preserved.
+* **1-Click Quick Toggle:** Turn Maintenance or Coming Soon mode ON/OFF in one click from the WordPress Admin Bar or the plugin settings banner.
+* **True Maintenance Mode (HTTP 503 + Retry-After):** Informs search engines that your site is temporarily down so your SEO rankings are preserved.
 * **Coming Soon Mode (HTTP 200):** Ideal for new websites under construction, with optional `X-Robots-Tag: noindex, nofollow` protection.
 * **Role-Based Access:** Allow selected user roles (Administrators always have access) to browse the live site normally while logged in.
-* **Secret Bypass Link:** Share a secure, constant-time verified bypass URL with clients or stakeholders—regenerate it anytime with one click.
+* **Secret Bypass Link:** Share a secure, constant-time verified bypass URL with clients or stakeholders (stored via `HttpOnly; SameSite=Lax` hashed cookie)—regenerate it anytime with one click.
+* **Multi-Language & WPML / Polylang Ready:** Full i18n support with `.pot` template, bundled Polish (`pl_PL`) translation, and `wpml-config.xml` for translating custom maintenance messages.
 * **Excluded Paths & REST API Control:** Keep specific relative paths (such as `/privacy-policy`) accessible and control public `/wp-json/` REST API access.
-* **Clean Customization:** Customize the browser title, headline, rich message, logo (via WordPress Media Library), colors, and custom CSS—with zero external CDN requests.
+* **Clean Customization & Zero External CDNs:** Customize the browser title, headline, rich message, logo (via WordPress Media Library), colors, and custom CSS—all assets load locally with zero telemetry.
 * **Developer & Freemium Friendly:** Clean filter and action hooks (`smg_can_bypass`, `smg_template_vars`, `smg_settings_tabs`, `smg_before_render_template`).
 
 == Installation ==

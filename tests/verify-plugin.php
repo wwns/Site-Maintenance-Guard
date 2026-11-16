@@ -166,8 +166,8 @@ smg_assert( false === $frontend->should_bypass( $test_settings ), 'Visitor witho
 $_COOKIE[ SMG_Frontend::BYPASS_COOKIE ] = 'wrong_token';
 smg_assert( false === $frontend->should_bypass( $test_settings ), 'Visitor with wrong bypass cookie is blocked' );
 
-$_COOKIE[ SMG_Frontend::BYPASS_COOKIE ] = 'secret123456';
-smg_assert( true === $frontend->should_bypass( $test_settings ), 'Visitor with valid bypass cookie can bypass' );
+$_COOKIE[ SMG_Frontend::BYPASS_COOKIE ] = hash( 'sha256', 'secret123456' );
+smg_assert( true === $frontend->should_bypass( $test_settings ), 'Visitor with valid hashed bypass cookie can bypass' );
 unset( $_COOKIE[ SMG_Frontend::BYPASS_COOKIE ] );
 
 $_SERVER['REQUEST_URI'] = '/privacy-policy/';
