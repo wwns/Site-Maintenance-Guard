@@ -3,52 +3,208 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Site Maintenance Guard 1.0.0\n"
-"Report-Msgid-Bugs-To: https://github.com/wwns/site-maintenance-guard/issues\n"
-"POT-Creation-Date: 2026-11-16T09:40:00+00:00\n"
+"Report-Msgid-Bugs-To: https://github.com/wwns/Site-Maintenance-Guard/issues\n"
+"POT-Creation-Date: 2026-11-16T09:50:00+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Domain: site-maintenance-guard\n"
 
-#: includes/class-smg-plugin.php:77
+msgid "The site is currently undergoing maintenance."
+msgstr ""
+
 msgid "Settings"
 msgstr ""
 
-#: includes/class-smg-plugin.php:100
-msgid "Coming Soon: Active"
+msgid "Coming Soon: ON"
 msgstr ""
 
-#: includes/class-smg-plugin.php:101
-msgid "Maintenance Mode: Active"
+msgid "Maintenance: ON"
 msgstr ""
 
-#: includes/class-smg-plugin.php:110
+msgid "Turn OFF Maintenance Mode"
+msgstr ""
+
+msgid "Maintenance: OFF"
+msgstr ""
+
+msgid "Turn ON Maintenance Mode"
+msgstr ""
+
 msgid "Configure Site Maintenance Guard"
 msgstr ""
 
-#: includes/class-smg-settings.php:48
+msgid "You do not have permission to perform this action."
+msgstr ""
+
 msgid "Site Under Maintenance"
 msgstr ""
 
-#: includes/class-smg-settings.php:49
 msgid "We will be back shortly"
 msgstr ""
 
-#: includes/class-smg-settings.php:50
 msgid "Our website is currently undergoing scheduled maintenance. Thank you for your patience."
 msgstr ""
 
-#: includes/class-smg-settings.php:89
 msgid "Site Maintenance Guard"
 msgstr ""
 
-#: includes/class-smg-settings.php:90
 msgid "Maintenance Guard"
 msgstr ""
 
-#: includes/class-smg-frontend.php:58
-msgid "The site is currently undergoing maintenance."
+msgid "Select Logo Image"
 msgstr ""
+
+msgid "Use this image"
+msgstr ""
+
+msgid "Copied!"
+msgstr ""
+
+msgid "Copy URL"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Design"
+msgstr ""
+
+msgid "Access & Bypass"
+msgstr ""
+
+msgid "Extensions"
+msgstr ""
+
+msgid "Status: ACTIVE — visitors see the maintenance page."
+msgstr ""
+
+msgid "Status: INACTIVE — your site is live for everyone."
+msgstr ""
+
+msgid "Turn OFF"
+msgstr ""
+
+msgid "Turn ON"
+msgstr ""
+
+msgid "Secret bypass link has been regenerated."
+msgstr ""
+
+msgid "Settings sections"
+msgstr ""
+
+msgid "Regenerate Secret Bypass Token"
+msgstr ""
+
+msgid "If your secret bypass URL was shared unintentionally, regenerate the token below to invalidate previous links."
+msgstr ""
+
+msgid "Regenerate Bypass Link"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Enable Maintenance / Coming Soon mode for visitors"
+msgstr ""
+
+msgid "Mode"
+msgstr ""
+
+msgid "Maintenance Mode (HTTP 503 + Retry-After)"
+msgstr ""
+
+msgid "Coming Soon Mode (HTTP 200)"
+msgstr ""
+
+msgid "Use HTTP 503 for temporary downtime so search engines do not de-index your site. Use HTTP 200 for new sites under construction."
+msgstr ""
+
+msgid "Retry-After (seconds)"
+msgstr ""
+
+msgid "Sent in the HTTP Retry-After header when Maintenance Mode (503) is active (default: 3600 seconds = 1 hour)."
+msgstr ""
+
+msgid "Search Engine Visibility"
+msgstr ""
+
+msgid "Send X-Robots-Tag: noindex, nofollow in Coming Soon mode"
+msgstr ""
+
+msgid "Browser Page Title"
+msgstr ""
+
+msgid "Headline"
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "Logo"
+msgstr ""
+
+msgid "Select Logo"
+msgstr ""
+
+msgid "Remove Logo"
+msgstr ""
+
+msgid "Background Color"
+msgstr ""
+
+msgid "Card Background Color"
+msgstr ""
+
+msgid "Text Color"
+msgstr ""
+
+msgid "Accent Color"
+msgstr ""
+
+msgid "Custom CSS"
+msgstr ""
+
+msgid "Allowed User Roles"
+msgstr ""
+
+msgid "Logged-in users with selected roles can view the live site normally. Administrators always retain access."
+msgstr ""
+
+msgid "Secret Bypass Link"
+msgstr ""
+
+msgid "Allow visitors with the secret link to bypass Maintenance / Coming Soon mode"
+msgstr ""
+
+msgid "Excluded URL Paths"
+msgstr ""
+
+msgid "Enter one relative path per line (e.g. /privacy-policy) that should remain publicly accessible."
+msgstr ""
+
+msgid "REST API"
+msgstr ""
+
+msgid "Allow public REST API (/wp-json/) requests while maintenance mode is active"
+msgstr ""
+
+msgid "Developer Hooks & Pro Extensibility"
+msgstr ""
+
+msgid "Site Maintenance Guard provides clean WordPress filter and action hooks so agencies, themes, and optional add-ons can customize behavior without modifying core plugin files."
+msgstr ""
+
+msgid "Filter whether the current request should bypass maintenance mode (e.g., IP allowlists or scheduled windows)."
+msgstr ""
+
+msgid "Filter variables passed to the maintenance page template."
+msgstr ""
+
+msgid "Register additional settings tabs for modular extensions."
+msgstr ""
+
+msgid "Action fired right before the maintenance template is rendered."
+msgstr ""
+

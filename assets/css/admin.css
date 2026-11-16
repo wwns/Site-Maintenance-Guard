@@ -2,6 +2,50 @@
 	margin-bottom: 20px;
 }
 
+.smg-status-banner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 12px 18px;
+	margin: 14px 0 18px;
+	background: #ffffff;
+	border: 1px solid #c3c4c7;
+	border-left-width: 4px;
+	border-radius: 4px;
+	max-width: 780px;
+}
+
+.smg-status-banner.smg-status-on {
+	border-left-color: #d63638;
+}
+
+.smg-status-banner.smg-status-off {
+	border-left-color: #00a32a;
+}
+
+.smg-status-info {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.smg-status-dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	display: inline-block;
+	flex-shrink: 0;
+}
+
+.smg-status-on .smg-status-dot {
+	background-color: #d63638;
+}
+
+.smg-status-off .smg-status-dot {
+	background-color: #00a32a;
+}
+
 .smg-logo-preview {
 	margin-bottom: 10px;
 }

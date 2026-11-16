@@ -327,9 +327,35 @@ class SMG_Settings {
 		}
 
 		$bypass_url = add_query_arg( 'smg_bypass', $settings['bypass_token'], home_url( '/' ) );
+		$is_enabled = ! empty( $settings['enabled'] );
+		$toggle_url = wp_nonce_url(
+			admin_url( 'admin-post.php?action=smg_quick_toggle' ),
+			'smg_quick_toggle',
+			'smg_toggle_nonce'
+		);
 		?>
 		<div class="wrap smg-wrap">
 			<h1><?php esc_html_e( 'Site Maintenance Guard', 'site-maintenance-guard' ); ?></h1>
+
+			<div class="smg-status-banner <?php echo $is_enabled ? 'smg-status-on' : 'smg-status-off'; ?>">
+				<div class="smg-status-info">
+					<span class="smg-status-dot" aria-hidden="true"></span>
+					<strong>
+						<?php
+						echo $is_enabled
+							? esc_html__( 'Status: ACTIVE — visitors see the maintenance page.', 'site-maintenance-guard' )
+							: esc_html__( 'Status: INACTIVE — your site is live for everyone.', 'site-maintenance-guard' );
+						?>
+					</strong>
+				</div>
+				<a href="<?php echo esc_url( $toggle_url ); ?>" class="button <?php echo $is_enabled ? 'button-secondary' : 'button-primary'; ?>">
+					<?php
+					echo $is_enabled
+						? esc_html__( 'Turn OFF', 'site-maintenance-guard' )
+						: esc_html__( 'Turn ON', 'site-maintenance-guard' );
+					?>
+				</a>
+			</div>
 
 			<?php if ( ! empty( $_GET['smg-token-updated'] ) ) : // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>
 				<div class="notice notice-success is-dismissible">

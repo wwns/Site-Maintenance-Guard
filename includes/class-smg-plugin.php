@@ -66,11 +66,27 @@ final class SMG_Plugin {
 		$this->settings = new SMG_Settings();
 		$this->frontend = new SMG_Frontend();
 
+		add_action( 'init', array( $this, 'load_textdomain' ) );
 		add_filter(
 			'plugin_action_links_' . plugin_basename( SMG_PLUGIN_FILE ),
 			array( $this, 'add_action_links' )
 		);
 		add_action( 'admin_bar_menu', array( $this, 'add_admin_bar_indicator' ), 100 );
+		add_action( 'admin_post_smg_quick_toggle', array( $this, 'handle_quick_toggle' ) );
+	}
+
+	/**
+	 * Load plugin textdomain for bundled translations.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
+	public function load_textdomain() {
+		load_plugin_textdomain(
+			'site-maintenance-guard',
+			false,
+			dirname( plugin_basename( SMG_PLUGIN_FILE ) ) . '/languages'
+		);
 	}
 
 	/**
@@ -94,7 +110,7 @@ final class SMG_Plugin {
 	}
 
 	/**
-	 * Show an active status badge in the WordPress Admin Bar when enabled.
+	 * Show status & 1-click quick toggle in the WordPress Admin Bar.
 	 *
 	 * @since 1.0.0
 	 * @param WP_Admin_Bar $wp_admin_bar Admin bar instance.
@@ -105,15 +121,21 @@ final class SMG_Plugin {
 			return;
 		}
 
-		$options = SMG_Settings::get_settings();
-		if ( empty( $options['enabled'] ) ) {
-			return;
-		}
+		$options    = SMG_Settings::get_settings();
+		$is_enabled = ! empty( $options['enabled'] );
 
-		$is_coming_soon = ( 'coming_soon' === $options['mode'] );
-		$label          = $is_coming_soon
-			? __( 'Coming Soon: Active', 'site-maintenance-guard' )
-			: __( 'Maintenance Mode: Active', 'site-maintenance-guard' );
+		if ( $is_enabled ) {
+			$is_coming_soon = ( 'coming_soon' === $options['mode'] );
+			$label          = $is_coming_soon
+				? __( 'Coming Soon: ON', 'site-maintenance-guard' )
+				: __( 'Maintenance: ON', 'site-maintenance-guard' );
+			$toggle_label   = __( 'Turn OFF Maintenance Mode', 'site-maintenance-guard' );
+			$node_class     = 'smg-admin-bar-active';
+		} else {
+			$label        = __( 'Maintenance: OFF', 'site-maintenance-guard' );
+			$toggle_label = __( 'Turn ON Maintenance Mode', 'site-maintenance-guard' );
+			$node_class   = 'smg-admin-bar-inactive';
+		}
 
 		$wp_admin_bar->add_node(
 			array(
@@ -121,10 +143,52 @@ final class SMG_Plugin {
 				'title' => '<span class="ab-icon dashicons dashicons-shield"></span><span class="ab-label">' . esc_html( $label ) . '</span>',
 				'href'  => esc_url( admin_url( 'options-general.php?page=site-maintenance-guard' ) ),
 				'meta'  => array(
-					'class' => 'smg-admin-bar-active',
+					'class' => $node_class,
 					'title' => esc_attr__( 'Configure Site Maintenance Guard', 'site-maintenance-guard' ),
 				),
 			)
 		);
+
+		$toggle_url = wp_nonce_url(
+			admin_url( 'admin-post.php?action=smg_quick_toggle' ),
+			'smg_quick_toggle',
+			'smg_toggle_nonce'
+		);
+
+		$wp_admin_bar->add_node(
+			array(
+				'id'     => 'smg-quick-toggle',
+				'parent' => 'smg-status-indicator',
+				'title'  => esc_html( $toggle_label ),
+				'href'   => esc_url( $toggle_url ),
+			)
+		);
+	}
+
+	/**
+	 * Handle 1-click quick toggle from the Admin Bar or Settings page.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
+	public function handle_quick_toggle() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'You do not have permission to perform this action.', 'site-maintenance-guard' ), 403 );
+		}
+
+		check_admin_referer( 'smg_quick_toggle', 'smg_toggle_nonce' );
+
+		$settings            = SMG_Settings::get_settings();
+		$settings['enabled'] = empty( $settings['enabled'] );
+
+		update_option( SMG_OPTION_NAME, $settings );
+
+		$redirect_url = wp_get_referer();
+		if ( ! $redirect_url ) {
+			$redirect_url = admin_url( 'options-general.php?page=site-maintenance-guard' );
+		}
+
+		wp_safe_redirect( $redirect_url );
+		exit;
 	}
 }

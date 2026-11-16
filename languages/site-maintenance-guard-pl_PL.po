@@ -1,0 +1,212 @@
+# Polish translation for Site Maintenance Guard.
+# Copyright (C) 2026 wwns
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Site Maintenance Guard 1.0.0\n"
+"POT-Creation-Date: 2026-11-16T09:50:00+00:00\n"
+"PO-Revision-Date: 2026-11-16T09:50:00+00:00\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "The site is currently undergoing maintenance."
+msgstr "Strona jest obecnie w trakcie prac technicznych."
+
+msgid "Settings"
+msgstr "Ustawienia"
+
+msgid "Coming Soon: ON"
+msgstr "Wkrótce: WŁ."
+
+msgid "Maintenance: ON"
+msgstr "Prace techniczne: WŁ."
+
+msgid "Turn OFF Maintenance Mode"
+msgstr "Wyłącz tryb prac technicznych"
+
+msgid "Maintenance: OFF"
+msgstr "Prace techniczne: WYŁ."
+
+msgid "Turn ON Maintenance Mode"
+msgstr "Włącz tryb prac technicznych"
+
+msgid "Configure Site Maintenance Guard"
+msgstr "Konfiguruj Site Maintenance Guard"
+
+msgid "You do not have permission to perform this action."
+msgstr "Nie masz uprawnień do wykonania tej akcji."
+
+msgid "Site Under Maintenance"
+msgstr "Strona w trakcie prac technicznych"
+
+msgid "We will be back shortly"
+msgstr "Wkrótce wracamy"
+
+msgid "Our website is currently undergoing scheduled maintenance. Thank you for your patience."
+msgstr "Nasza strona internetowa przechodzi obecnie zaplanowane prace techniczne. Dziękujemy za cierpliwość."
+
+msgid "Site Maintenance Guard"
+msgstr "Site Maintenance Guard"
+
+msgid "Maintenance Guard"
+msgstr "Maintenance Guard"
+
+msgid "Select Logo Image"
+msgstr "Wybierz obraz logo"
+
+msgid "Use this image"
+msgstr "Użyj tego obrazu"
+
+msgid "Copied!"
+msgstr "Skopiowano!"
+
+msgid "Copy URL"
+msgstr "Kopiuj URL"
+
+msgid "General"
+msgstr "Ogólne"
+
+msgid "Design"
+msgstr "Wygląd"
+
+msgid "Access & Bypass"
+msgstr "Dostęp i wyjątki"
+
+msgid "Extensions"
+msgstr "Rozszerzenia"
+
+msgid "Status: ACTIVE — visitors see the maintenance page."
+msgstr "Status: AKTYWNY — odwiedzający widzą stronę prac technicznych."
+
+msgid "Status: INACTIVE — your site is live for everyone."
+msgstr "Status: NIEAKTYWNY — strona jest dostępna dla wszystkich."
+
+msgid "Turn OFF"
+msgstr "Wyłącz"
+
+msgid "Turn ON"
+msgstr "Włącz"
+
+msgid "Secret bypass link has been regenerated."
+msgstr "Tajny link dostępu został wygenerowany ponownie."
+
+msgid "Settings sections"
+msgstr "Sekcje ustawień"
+
+msgid "Regenerate Secret Bypass Token"
+msgstr "Wygeneruj nowy tajny token dostępu"
+
+msgid "If your secret bypass URL was shared unintentionally, regenerate the token below to invalidate previous links."
+msgstr "Jeśli tajny link dostępu został udostępniony przypadkowo, wygeneruj nowy token poniżej, aby unieważnić poprzednie linki."
+
+msgid "Regenerate Bypass Link"
+msgstr "Wygeneruj nowy link"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Enable Maintenance / Coming Soon mode for visitors"
+msgstr "Włącz tryb prac technicznych / Wkrótce dla odwiedzających"
+
+msgid "Mode"
+msgstr "Tryb"
+
+msgid "Maintenance Mode (HTTP 503 + Retry-After)"
+msgstr "Tryb prac technicznych (HTTP 503 + Retry-After)"
+
+msgid "Coming Soon Mode (HTTP 200)"
+msgstr "Tryb Wkrótce (HTTP 200)"
+
+msgid "Use HTTP 503 for temporary downtime so search engines do not de-index your site. Use HTTP 200 for new sites under construction."
+msgstr "Użyj HTTP 503 przy tymczasowej przerwie, aby wyszukiwarki nie wyindeksowały strony. Użyj HTTP 200 dla nowych stron w budowie."
+
+msgid "Retry-After (seconds)"
+msgstr "Retry-After (sekundy)"
+
+msgid "Sent in the HTTP Retry-After header when Maintenance Mode (503) is active (default: 3600 seconds = 1 hour)."
+msgstr "Wysyłane w nagłówku HTTP Retry-After, gdy aktywny jest tryb prac technicznych (503) (domyślnie: 3600 sekund = 1 godzina)."
+
+msgid "Search Engine Visibility"
+msgstr "Widoczność w wyszukiwarkach"
+
+msgid "Send X-Robots-Tag: noindex, nofollow in Coming Soon mode"
+msgstr "Wysyłaj X-Robots-Tag: noindex, nofollow w trybie Wkrótce"
+
+msgid "Browser Page Title"
+msgstr "Tytuł strony w przeglądarce"
+
+msgid "Headline"
+msgstr "Nagłówek"
+
+msgid "Message"
+msgstr "Wiadomość"
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Select Logo"
+msgstr "Wybierz logo"
+
+msgid "Remove Logo"
+msgstr "Usuń logo"
+
+msgid "Background Color"
+msgstr "Kolor tła"
+
+msgid "Card Background Color"
+msgstr "Kolor tła karty"
+
+msgid "Text Color"
+msgstr "Kolor tekstu"
+
+msgid "Accent Color"
+msgstr "Kolor akcentu"
+
+msgid "Custom CSS"
+msgstr "Własny CSS"
+
+msgid "Allowed User Roles"
+msgstr "Dozwolone role użytkowników"
+
+msgid "Logged-in users with selected roles can view the live site normally. Administrators always retain access."
+msgstr "Zalogowani użytkownicy z wybranymi rolami mogą normalnie przeglądać stronę. Administratorzy zawsze zachowują dostęp."
+
+msgid "Secret Bypass Link"
+msgstr "Tajny link dostępu"
+
+msgid "Allow visitors with the secret link to bypass Maintenance / Coming Soon mode"
+msgstr "Zezwól odwiedzającym z tajnym linkiem na ominięcie trybu prac technicznych / Wkrótce"
+
+msgid "Excluded URL Paths"
+msgstr "Wykluczone ścieżki URL"
+
+msgid "Enter one relative path per line (e.g. /privacy-policy) that should remain publicly accessible."
+msgstr "Wpisz jedną ścieżkę względną w linii (np. /polityka-prywatnosci), która ma pozostać publicznie dostępna."
+
+msgid "REST API"
+msgstr "REST API"
+
+msgid "Allow public REST API (/wp-json/) requests while maintenance mode is active"
+msgstr "Zezwól na publiczne zapytania REST API (/wp-json/), gdy tryb prac technicznych jest aktywny"
+
+msgid "Developer Hooks & Pro Extensibility"
+msgstr "Hooki deweloperskie i rozszerzalność Pro"
+
+msgid "Site Maintenance Guard provides clean WordPress filter and action hooks so agencies, themes, and optional add-ons can customize behavior without modifying core plugin files."
+msgstr "Site Maintenance Guard udostępnia czyste filtry i akcje WordPress, dzięki którym agencje, motywy i opcjonalne dodatki mogą dostosowywać działanie bez modyfikacji plików wtyczki."
+
+msgid "Filter whether the current request should bypass maintenance mode (e.g., IP allowlists or scheduled windows)."
+msgstr "Filtruje, czy bieżące żądanie powinno ominąć tryb prac technicznych (np. biała lista IP lub harmonogram)."
+
+msgid "Filter variables passed to the maintenance page template."
+msgstr "Filtruje zmienne przekazywane do szablonu strony prac technicznych."
+
+msgid "Register additional settings tabs for modular extensions."
+msgstr "Rejestruje dodatkowe zakładki ustawień dla modułowych rozszerzeń."
+
+msgid "Action fired right before the maintenance template is rendered."
+msgstr "Akcja wywoływana tuż przed wyrenderowaniem szablonu prac technicznych."
+

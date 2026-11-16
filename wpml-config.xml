@@ -1,0 +1,9 @@
+<wpml-config>
+	<admin-texts>
+		<key name="smg_settings">
+			<key name="page_title" />
+			<key name="heading" />
+			<key name="message" />
+		</key>
+	</admin-texts>
+</wpml-config>
