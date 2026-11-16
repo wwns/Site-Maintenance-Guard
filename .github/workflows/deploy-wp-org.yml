@@ -1,17 +1,33 @@
 name: Deploy to WordPress.org
 
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to deploy (e.g. v1.1.0). Leave empty to deploy the selected branch.'
+        required: false
+        default: ''
+        type: string
 
 jobs:
   deploy:
     name: Deploy Release to WordPress.org SVN
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - name: Checkout tag
-        uses: actions/checkout@v4
+      - name: Verify WordPress.org SVN secrets
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+        run: |
+          if [ -z "$SVN_USERNAME" ] || [ -z "$SVN_PASSWORD" ]; then
+            echo "::error::Missing SVN_USERNAME or SVN_PASSWORD repository secrets. Configure them in GitHub Settings -> Secrets and variables -> Actions after your plugin is approved on WordPress.org."
+            exit 1
+          fi
+
+      - name: Checkout target ref
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.tag != '' && inputs.tag || github.ref }}
 
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
