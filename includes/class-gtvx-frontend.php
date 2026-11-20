@@ -2,7 +2,7 @@
 /**
  * Frontend maintenance / coming soon interception handler.
  *
- * @package Site_Maintenance_Guard
+ * @package Gatedevx_Maintenance_Guard
  * @since   1.0.0
  */
 
@@ -11,13 +11,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class SMG_Frontend
+ * Class GTVX_Frontend
  *
  * Handles HTTP headers, bypass verification, and maintenance template rendering.
  *
  * @since 1.0.0
  */
-class SMG_Frontend {
+class GTVX_Frontend {
 
 	/**
 	 * Cookie name used for secret bypass link.
@@ -25,7 +25,7 @@ class SMG_Frontend {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	const BYPASS_COOKIE = 'smg_bypass_token';
+	const BYPASS_COOKIE = 'gtvx_bypass_token';
 
 	/**
 	 * Constructor.
@@ -49,7 +49,7 @@ class SMG_Frontend {
 			return $result;
 		}
 
-		$settings = SMG_Settings::get_settings();
+		$settings = GTVX_Settings::get_settings();
 		if ( empty( $settings['enabled'] ) || ! empty( $settings['allow_rest_api'] ) ) {
 			return $result;
 		}
@@ -58,13 +58,13 @@ class SMG_Frontend {
 			return $result;
 		}
 
-		if ( apply_filters( 'smg_can_bypass', false, $settings ) ) {
+		if ( apply_filters( 'gtvx_can_bypass', false, $settings ) ) {
 			return $result;
 		}
 
 		return new WP_Error(
-			'smg_maintenance_mode',
-			__( 'The site is currently undergoing maintenance.', 'site-maintenance-guard' ),
+			'gtvx_maintenance_mode',
+			__( 'The site is currently undergoing maintenance.', 'gatedevx-maintenance-guard' ),
 			array( 'status' => 503 )
 		);
 	}
@@ -76,7 +76,7 @@ class SMG_Frontend {
 	 * @return void
 	 */
 	public function handle_maintenance_mode() {
-		$settings = SMG_Settings::get_settings();
+		$settings = GTVX_Settings::get_settings();
 
 		if ( empty( $settings['enabled'] ) ) {
 			return;
@@ -123,7 +123,7 @@ class SMG_Frontend {
 	}
 
 	/**
-	 * Process ?smg_bypass=<token> query parameter, set cookie, and redirect cleanly.
+	 * Process ?gtvx_bypass=<token> query parameter, set cookie, and redirect cleanly.
 	 *
 	 * @since 1.0.0
 	 * @param array<string, mixed> $settings Plugin settings.
@@ -135,12 +135,12 @@ class SMG_Frontend {
 		}
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( ! isset( $_GET['smg_bypass'] ) ) {
+		if ( ! isset( $_GET['gtvx_bypass'] ) ) {
 			return;
 		}
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$provided_token = sanitize_text_field( wp_unslash( $_GET['smg_bypass'] ) );
+		$provided_token = sanitize_text_field( wp_unslash( $_GET['gtvx_bypass'] ) );
 		$expected_token = (string) $settings['bypass_token'];
 
 		if ( '' !== $provided_token && hash_equals( $expected_token, $provided_token ) ) {
@@ -155,7 +155,7 @@ class SMG_Frontend {
 			);
 			setcookie( self::BYPASS_COOKIE, $cookie_value, $cookie_options );
 
-			wp_safe_redirect( remove_query_arg( 'smg_bypass' ) );
+			wp_safe_redirect( remove_query_arg( 'gtvx_bypass' ) );
 			exit;
 		}
 	}
@@ -180,7 +180,7 @@ class SMG_Frontend {
 			return true;
 		}
 
-		return (bool) apply_filters( 'smg_can_bypass', false, $settings );
+		return (bool) apply_filters( 'gtvx_can_bypass', false, $settings );
 	}
 
 	/**
@@ -289,11 +289,11 @@ class SMG_Frontend {
 
 		$hero_image_url = '';
 		$visual_preset  = isset( $settings['visual_preset'] ) ? (string) $settings['visual_preset'] : 'none';
-		$presets        = SMG_Settings::get_visual_presets();
+		$presets        = GTVX_Settings::get_visual_presets();
 		if ( isset( $presets[ $visual_preset ] ) && ! empty( $presets[ $visual_preset ]['file'] ) ) {
 			$preset_file = $presets[ $visual_preset ]['file'];
-			if ( file_exists( SMG_PLUGIN_DIR . 'assets/images/' . $preset_file ) ) {
-				$hero_image_url = SMG_PLUGIN_URL . 'assets/images/' . $preset_file;
+			if ( file_exists( GTVX_PLUGIN_DIR . 'assets/images/' . $preset_file ) ) {
+				$hero_image_url = GTVX_PLUGIN_URL . 'assets/images/' . $preset_file;
 			}
 		}
 
@@ -302,7 +302,7 @@ class SMG_Frontend {
 			: 'light';
 
 		$template_vars = apply_filters(
-			'smg_template_vars',
+			'gtvx_template_vars',
 			array(
 				'mode'           => $settings['mode'],
 				'status_badge'   => $settings['status_badge'] ?? '',
@@ -320,35 +320,30 @@ class SMG_Frontend {
 				'card_bg_color'  => $settings['card_bg_color'],
 				'text_color'     => $settings['text_color'],
 				'accent_color'   => $settings['accent_color'],
-				'custom_css'     => $settings['custom_css'],
 				'noindex'        => ( 'maintenance' === $settings['mode'] || ! empty( $settings['noindex_coming_soon'] ) ),
 			)
 		);
 
 		wp_enqueue_style(
-			'smg-frontend',
-			SMG_PLUGIN_URL . 'assets/css/frontend.css',
+			'gtvx-frontend',
+			GTVX_PLUGIN_URL . 'assets/css/frontend.css',
 			array(),
-			SMG_VERSION
+			GTVX_VERSION
 		);
 
 		$dynamic_css = sprintf(
-			':root { --smg-bg: %1$s; --smg-card-bg: %2$s; --smg-text: %3$s; --smg-accent: %4$s; }',
+			':root { --gtvx-bg: %1$s; --gtvx-card-bg: %2$s; --gtvx-text: %3$s; --gtvx-accent: %4$s; }',
 			sanitize_hex_color( $template_vars['bg_color'] ) ?: '#f4f6f8',
 			sanitize_hex_color( $template_vars['card_bg_color'] ) ?: '#ffffff',
 			sanitize_hex_color( $template_vars['text_color'] ) ?: '#1e293b',
 			sanitize_hex_color( $template_vars['accent_color'] ) ?: '#2563eb'
 		);
 
-		if ( ! empty( $template_vars['custom_css'] ) ) {
-			$dynamic_css .= "\n" . wp_strip_all_tags( (string) $template_vars['custom_css'] );
-		}
+		wp_add_inline_style( 'gtvx-frontend', $dynamic_css );
 
-		wp_add_inline_style( 'smg-frontend', $dynamic_css );
+		do_action( 'gtvx_before_render_template', $template_vars );
 
-		do_action( 'smg_before_render_template', $template_vars );
-
-		$template_path = SMG_PLUGIN_DIR . 'templates/maintenance-page.php';
+		$template_path = GTVX_PLUGIN_DIR . 'templates/maintenance-page.php';
 		if ( file_exists( $template_path ) ) {
 			include $template_path;
 		}

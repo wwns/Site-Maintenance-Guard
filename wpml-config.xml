@@ -1,6 +1,6 @@
 <wpml-config>
 	<admin-texts>
-		<key name="smg_settings">
+		<key name="gtvx_settings">
 			<key name="status_badge" />
 			<key name="page_title" />
 			<key name="heading" />

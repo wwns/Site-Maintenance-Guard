@@ -30,7 +30,7 @@ jobs:
           with open(".distignore", "r", encoding="utf-8") as f:
               ignores = {line.strip().rstrip("/") for line in f if line.strip() and not line.strip().startswith("#")}
 
-          zip_path = os.path.join(root, "dist", f"site-maintenance-guard-{version}.zip")
+          zip_path = os.path.join(root, "dist", f"gatedevx-maintenance-guard-{version}.zip")
           with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
               for dirpath, dirnames, filenames in os.walk(root):
                   rel_dir = os.path.relpath(dirpath, root)
@@ -46,7 +46,7 @@ jobs:
                           continue
                       full_path = os.path.join(dirpath, fname)
                       rel_path = os.path.relpath(full_path, root)
-                      arcname = os.path.join("site-maintenance-guard", rel_path)
+                      arcname = os.path.join("gatedevx-maintenance-guard", rel_path)
                       zf.write(full_path, arcname)
           print("Built:", zip_path)
           PY
@@ -58,6 +58,6 @@ jobs:
         run: |
           VERSION="${TAG_NAME#v}"
           gh release create "$TAG_NAME" \
-            "dist/site-maintenance-guard-${VERSION}.zip" \
-            --title "Site Maintenance Guard $TAG_NAME" \
+            "dist/gatedevx-maintenance-guard-${VERSION}.zip" \
+            --title "Gatedevx Maintenance Guard $TAG_NAME" \
             --generate-notes

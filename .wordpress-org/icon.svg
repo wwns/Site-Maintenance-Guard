@@ -1,15 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Site Maintenance Guard Icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Gatedevx Maintenance Guard Icon">
   <defs>
-    <linearGradient id="smg-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="gtvx-bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#1e293b"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </linearGradient>
-    <linearGradient id="smg-shield" x1="0%" y1="0%" x2="0%" y2="100%">
+    <linearGradient id="gtvx-shield" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#3b82f6"/>
       <stop offset="100%" stop-color="#1d4ed8"/>
     </linearGradient>
   </defs>
-  <rect width="256" height="256" rx="48" fill="url(#smg-bg)"/>
-  <path d="M128 36 L200 66 V124 C200 172 169 208 128 222 C87 208 56 172 56 124 V66 Z" fill="url(#smg-shield)" stroke="#93c5fd" stroke-width="4" stroke-linejoin="round"/>
+  <rect width="256" height="256" rx="48" fill="url(#gtvx-bg)"/>
+  <path d="M128 36 L200 66 V124 C200 172 169 208 128 222 C87 208 56 172 56 124 V66 Z" fill="url(#gtvx-shield)" stroke="#93c5fd" stroke-width="4" stroke-linejoin="round"/>
   <path d="M150 96 A24 24 0 0 0 116 126 L94 148 A8 8 0 0 0 105 159 L127 137 A24 24 0 0 0 157 103 L143 117 L133 107 Z" fill="#ffffff"/>
 </svg>

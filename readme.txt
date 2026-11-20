@@ -1,5 +1,5 @@
-=== Site Maintenance Guard ===
-Contributors: wwns
+=== Gatedevx Maintenance Guard ===
+Contributors: gatedevx
 Tags: maintenance mode, coming soon, under construction, 503, retry-after
 Requires at least: 6.0
 Tested up to: 7.1
@@ -12,7 +12,7 @@ Lightweight, standards-compliant Maintenance Mode (HTTP 503 + Retry-After) and C
 
 == Description ==
 
-**Site Maintenance Guard** lets you safely put your WordPress website into Maintenance Mode or Coming Soon mode without bloating your site or violating SEO best practices.
+**Gatedevx Maintenance Guard** lets you safely put your WordPress website into Maintenance Mode or Coming Soon mode without bloating your site or violating SEO best practices.
 
 = Key Features =
 
@@ -21,17 +21,17 @@ Lightweight, standards-compliant Maintenance Mode (HTTP 503 + Retry-After) and C
 * **Coming Soon Mode (HTTP 200):** Ideal for new websites under construction, with optional `X-Robots-Tag: noindex, nofollow` protection.
 * **Role-Based Access:** Allow selected user roles (Administrators always have access) to browse the live site normally while logged in.
 * **Secret Bypass Link:** Share a secure, constant-time verified bypass URL with clients or stakeholders (stored via `HttpOnly; SameSite=Lax` hashed cookie)—regenerate it anytime with one click.
-* **Multi-Language & WPML / Polylang Ready:** Full i18n support with `.pot` template, bundled Polish (`pl_PL`) translation, and `wpml-config.xml` for translating custom maintenance messages.
+* **Multi-Language & WPML / Polylang Ready:** Full i18n support with `.pot` template and `wpml-config.xml` for translating custom maintenance messages.
 * **Excluded Paths & REST API Control:** Keep specific relative paths (such as `/privacy-policy`) accessible and control public `/wp-json/` REST API access.
 * **3 Built-In Non-Cliché Visual Presets:** Choose from bundled lightweight (`< 75 KB`, 1:1) artwork presets—*Teaser Macro*, *Authentic Backstage (IT Desk)*, or *Retro UI Sleep Mode Cat*—designed without cliché cones or gears.
 * **Dark Mode & Auto OS Theme:** Choose Light, Dark, or Auto (`prefers-color-scheme: dark`) so the maintenance screen and artwork maintain crisp contrast on every visitor device.
 * **Structured Maintenance UX:** Display an optional pulsing **Status Badge**, concrete **Expected Return Time**, and clickable **Emergency Contact** (email `mailto:` or link) alongside your message.
-* **Clean Customization & Zero External CDNs:** Customize the browser title, headline, rich message, logo (via WordPress Media Library), colors, and custom CSS—all assets load locally with zero telemetry.
-* **Developer & Freemium Friendly:** Clean filter and action hooks (`smg_can_bypass`, `smg_template_vars`, `smg_settings_tabs`, `smg_before_render_template`).
+* **Clean Customization & Zero External CDNs:** Customize the browser title, headline, rich message, logo (via WordPress Media Library), and colors—all assets load locally with zero telemetry.
+* **Developer & Freemium Friendly:** Clean filter and action hooks (`gtvx_can_bypass`, `gtvx_template_vars`, `gtvx_settings_tabs`, `gtvx_before_render_template`).
 
 == Installation ==
 
-1. Upload the `site-maintenance-guard` folder to the `/wp-content/plugins/` directory, or install the plugin directly through the WordPress Plugins screen.
+1. Upload the `gatedevx-maintenance-guard` folder to the `/wp-content/plugins/` directory, or install the plugin directly through the WordPress Plugins screen.
 2. Activate the plugin through the **Plugins** screen in WordPress.
 3. Navigate to **Settings -> Maintenance Guard** to configure your mode, design, and access rules.
 

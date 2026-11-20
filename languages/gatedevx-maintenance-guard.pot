@@ -2,13 +2,13 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Site Maintenance Guard 1.0.0\n"
+"Project-Id-Version: Gatedevx Maintenance Guard 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/wwns/Site-Maintenance-Guard/issues\n"
 "POT-Creation-Date: 2026-11-16T09:50:00+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Domain: site-maintenance-guard\n"
+"X-Domain: gatedevx-maintenance-guard\n"
 
 msgid "The site is currently undergoing maintenance."
 msgstr ""
@@ -31,7 +31,7 @@ msgstr ""
 msgid "Turn ON Maintenance Mode"
 msgstr ""
 
-msgid "Configure Site Maintenance Guard"
+msgid "Configure Gatedevx Maintenance Guard"
 msgstr ""
 
 msgid "You do not have permission to perform this action."
@@ -46,7 +46,7 @@ msgstr ""
 msgid "Our website is currently undergoing scheduled maintenance. Thank you for your patience."
 msgstr ""
 
-msgid "Site Maintenance Guard"
+msgid "Gatedevx Maintenance Guard"
 msgstr ""
 
 msgid "Maintenance Guard"
@@ -163,9 +163,6 @@ msgstr ""
 msgid "Accent Color"
 msgstr ""
 
-msgid "Custom CSS"
-msgstr ""
-
 msgid "Allowed User Roles"
 msgstr ""
 
@@ -193,7 +190,7 @@ msgstr ""
 msgid "Developer Hooks & Pro Extensibility"
 msgstr ""
 
-msgid "Site Maintenance Guard provides clean WordPress filter and action hooks so agencies, themes, and optional add-ons can customize behavior without modifying core plugin files."
+msgid "Gatedevx Maintenance Guard provides clean WordPress filter and action hooks so agencies, themes, and optional add-ons can customize behavior without modifying core plugin files."
 msgstr ""
 
 msgid "Filter whether the current request should bypass maintenance mode (e.g., IP allowlists or scheduled windows)."

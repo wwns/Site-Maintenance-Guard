@@ -2,14 +2,14 @@
 	'use strict';
 
 	$( function () {
-		$( '.smg-color-picker' ).wpColorPicker();
+		$( '.gtvx-color-picker' ).wpColorPicker();
 
 		var mediaFrame;
-		var $logoIdInput = $( '#smg_logo_id' );
-		var $logoPreview = $( '#smg_logo_preview' );
-		var $removeBtn = $( '#smg_remove_logo' );
+		var $logoIdInput = $( '#gtvx_logo_id' );
+		var $logoPreview = $( '#gtvx_logo_preview' );
+		var $removeBtn = $( '#gtvx_remove_logo' );
 
-		$( '#smg_select_logo' ).on( 'click', function ( e ) {
+		$( '#gtvx_select_logo' ).on( 'click', function ( e ) {
 			e.preventDefault();
 
 			if ( mediaFrame ) {
@@ -18,9 +18,9 @@
 			}
 
 			mediaFrame = wp.media( {
-				title: window.smgAdminL10n ? smgAdminL10n.mediaTitle : 'Select Logo',
+				title: window.gtvxAdminL10n ? gtvxAdminL10n.mediaTitle : 'Select Logo',
 				button: {
-					text: window.smgAdminL10n ? smgAdminL10n.mediaButton : 'Use this image'
+					text: window.gtvxAdminL10n ? gtvxAdminL10n.mediaButton : 'Use this image'
 				},
 				multiple: false,
 				library: { type: 'image' }
@@ -47,9 +47,9 @@
 			$removeBtn.addClass( 'hidden' );
 		} );
 
-		$( '#smg_copy_bypass_url' ).on( 'click', function () {
+		$( '#gtvx_copy_bypass_url' ).on( 'click', function () {
 			var $btn = $( this );
-			var input = document.getElementById( 'smg_bypass_url_input' );
+			var input = document.getElementById( 'gtvx_bypass_url_input' );
 			if ( ! input ) {
 				return;
 			}
@@ -66,8 +66,8 @@
 		} );
 
 		function showCopiedState( $btn ) {
-			var original = window.smgAdminL10n ? smgAdminL10n.copyText : 'Copy URL';
-			var copied = window.smgAdminL10n ? smgAdminL10n.copiedText : 'Copied!';
+			var original = window.gtvxAdminL10n ? gtvxAdminL10n.copyText : 'Copy URL';
+			var copied = window.gtvxAdminL10n ? gtvxAdminL10n.copiedText : 'Copied!';
 			$btn.text( copied );
 			setTimeout( function () {
 				$btn.text( original );

@@ -1,4 +1,4 @@
-# Site Maintenance Guard
+# Gatedevx Maintenance Guard
 
 Lightweight, WordPress.org-compliant Maintenance Mode (`HTTP 503` + `Retry-After`) and Coming Soon (`HTTP 200`) plugin for WordPress.
 
@@ -19,10 +19,10 @@ Lightweight, WordPress.org-compliant Maintenance Mode (`HTTP 503` + `Retry-After
 
 ## Developer & Freemium Hooks
 
-- `smg_can_bypass` (`bool $bypass, array $settings`) — Override bypass decision (e.g., IP allowlists or schedules).
-- `smg_template_vars` (`array $template_vars`) — Filter variables passed to `templates/maintenance-page.php`.
-- `smg_settings_tabs` (`array $tabs`) — Register custom tabs in **Settings → Maintenance Guard**.
-- `smg_before_render_template` (`array $template_vars`) — Action fired immediately before rendering the maintenance template.
+- `gtvx_can_bypass` (`bool $bypass, array $settings`) — Override bypass decision (e.g., IP allowlists or schedules).
+- `gtvx_template_vars` (`array $template_vars`) — Filter variables passed to `templates/maintenance-page.php`.
+- `gtvx_settings_tabs` (`array $tabs`) — Register custom tabs in **Settings → Maintenance Guard**.
+- `gtvx_before_render_template` (`array $template_vars`) — Action fired immediately before rendering the maintenance template.
 
 ## Development & Verification
 
